@@ -12,6 +12,7 @@
 #include <glog/logging.h>
 #include <machnet_common.h>
 #include <machnet_private.h>
+#include <rte_dev.h>
 #include <rte_eal.h>
 #include <rte_mbuf_core.h>
 

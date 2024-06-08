@@ -3,6 +3,7 @@
 
 #include <ether.h>
 #include <packet_pool.h>
+#include <rte_bus.h>
 #include <rte_bus_pci.h>
 #include <rte_ethdev.h>
 #include <rte_ether.h>
@@ -37,12 +38,12 @@ namespace dpdk {
                       reinterpret_cast<rte_ether_addr *>(lladdr->bytes));
 
   struct rte_bus *bus = rte_bus_find_by_device(devinfo->device);
-  if (bus && !strcmp(bus->name, "pci")) {
-    const struct rte_pci_device *pci_dev = RTE_DEV_TO_PCI(devinfo->device);
-    *pci_string = juggler::utils::Format(
-        "%08x:%02hhx:%02hhx.%02hhx %04hx:%04hx", pci_dev->addr.domain,
-        pci_dev->addr.bus, pci_dev->addr.devid, pci_dev->addr.function,
-        pci_dev->id.vendor_id, pci_dev->id.device_id);
+  if (bus && !strcmp(rte_bus_name(bus), "pci")) {
+    // rte_bus_pci *pci_bus = RTE_DEV_TO_PCI(bus);
+    // *pci_string = juggler::utils::Format(
+    //     "%08x:%02hhx:%02hhx.%02hhx %04hx:%04hx", devinfo->device.pci_dev->addr.domain, 
+    //     devinfo->pci_dev->addr.bus, devinfo->pci_dev->addr.devid, devinfo->pci_dev->addr.function,
+    //     devinfo->pci_dev->id.vendor_id, devinfo->pci_dev->id.device_id);
   }
 
   LOG(INFO) << "[PMDPORT] [port_id: " << static_cast<uint32_t>(port_id)
