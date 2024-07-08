@@ -18,7 +18,7 @@ fi
 BASE_DIR="$(dirname "$(readlink -f "$0")")"
 SRC_DIR="${BASE_DIR}/src/ext"
 
-blue "Building Machnet shim library..."
+blue "Building Machnet shim library in SRC_DIR=${SRC_DIR}..."
 
 cd "${SRC_DIR}" || exit 1
 make clean
@@ -32,7 +32,7 @@ else
   exit 1
 fi
 
-blue "Building Machnet examples..."
+blue "Building Machnet examples in EXAMPLES_DIR=${BASE_DIR}/examples..."
 EXAMPLES_DIR="${BASE_DIR}/examples"
 cd ${EXAMPLES_DIR}
 make clean
