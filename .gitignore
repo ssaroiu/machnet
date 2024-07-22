@@ -2,6 +2,8 @@
 *.o
 .cache/
 build/
+debug_build/
+release_build/
 .history
 .vscode
 gfp01.json
